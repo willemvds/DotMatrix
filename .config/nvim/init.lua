@@ -62,4 +62,5 @@ require("lualine").setup({
   },
 })
 
+vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<CR>')
 
