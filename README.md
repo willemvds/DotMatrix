@@ -4,6 +4,7 @@
 # Modern CLI
 alacritty - https://alacritty.org/  
 fish - https://fishshell.com/  
+nerdfonts - https://www.nerdfonts.com/  
 
 bat - https://github.com/sharkdp/bat  
 bb - https://babashka.org/  
