@@ -21,6 +21,7 @@ local plugins = {
 	{"nvim-tree/nvim-web-devicons"},
 	{"nvim-tree/nvim-tree.lua"},
 	{"neovim/nvim-lspconfig"},
+	{"Olical/conjure"},
 }
 
 local opts = {}
