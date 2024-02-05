@@ -1,4 +1,4 @@
-vim.opt.cursorline = false
+vim.opt.cursorline = true
 vim.opt.showcmd = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
