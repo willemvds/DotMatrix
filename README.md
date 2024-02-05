@@ -10,6 +10,7 @@ bat - https://github.com/sharkdp/bat
 bb - https://babashka.org/  
 cheat - https://github.com/cheat/cheat  
 fd - https://github.com/sharkdp/fd  
+fzf - https://github.com/junegunn/fzf  
 rg - https://github.com/BurntSushi/ripgrep  
 lsd - https://github.com/lsd-rs/lsd  
 nvim - https://neovim.io/  
