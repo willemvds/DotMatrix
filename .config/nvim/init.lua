@@ -45,6 +45,9 @@ lspconfig.rust_analyzer.setup {
   },
 }
 
+lspconfig.gopls.setup {
+}
+
 lspconfig.clojure_lsp.setup {
 }
 
