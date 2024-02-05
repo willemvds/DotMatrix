@@ -22,6 +22,7 @@ local plugins = {
 	{"nvim-tree/nvim-tree.lua"},
 	{"neovim/nvim-lspconfig"},
 	{"Olical/conjure"},
+	{"ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" }},
 }
 
 local opts = {}
@@ -30,10 +31,11 @@ require("lazy").setup(plugins, opts)
 
 require("nvim-tree").setup()
 
+require("fzf-lua").setup()
+
 --habamax
 vim.o.background = "dark" 
 vim.cmd([[colorscheme gruvbox]])
-
 
 local lspconfig = require('lspconfig')
 
@@ -63,5 +65,12 @@ require("lualine").setup({
   },
 })
 
+
 vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<CR>')
+-- vim.keymap.set('n', 'w', '<Up>')
+-- vim.keymap.set('n', 's', '<Down>')
+-- vim.keymap.set('n', 'a', '<Left>')
+-- vim.keymap.set('n', 'd', '<Right>')
+
+vim.keymap.set('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 
