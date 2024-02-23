@@ -21,7 +21,7 @@ local plugins = {
 	{"nvim-tree/nvim-web-devicons"},
 	{"nvim-tree/nvim-tree.lua"},
 	{"neovim/nvim-lspconfig"},
-	{"Olical/conjure"},
+	{"olical/conjure"},
 	{"ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" }},
 }
 
@@ -51,9 +51,43 @@ lspconfig.gopls.setup {
 lspconfig.clojure_lsp.setup {
 }
 
+lspconfig.elixirls.setup {
+  cmd = {"/usr/local/bin/elixir-ls"}
+}
+
 require("nvim-web-devicons").setup({
  color_icons = true,
  default = true,
+})
+
+
+vim.api.nvim_create_autocmd('lspattach', {
+  group = vim.api.nvim_create_augroup('userlspconfig', {}),
+  callback = function(ev)
+    -- enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- buffer local mappings.
+    -- see `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'k', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+    vim.keymap.set('n', '<space>d', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<space>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
 })
 
 require("lualine").setup({
@@ -69,11 +103,11 @@ require("lualine").setup({
 })
 
 
-vim.keymap.set('n', '<C-b>', ':NvimTreeFindFileToggle<CR>', { silent = true })
--- vim.keymap.set('n', 'w', '<Up>')
--- vim.keymap.set('n', 's', '<Down>')
--- vim.keymap.set('n', 'a', '<Left>')
--- vim.keymap.set('n', 'd', '<Right>')
+vim.keymap.set('n', '<c-b>', ':nvimtreefindfiletoggle<cr>', { silent = true })
+-- vim.keymap.set('n', 'w', '<up>')
+-- vim.keymap.set('n', 's', '<down>')
+-- vim.keymap.set('n', 'a', '<left>')
+-- vim.keymap.set('n', 'd', '<right>')
 
-vim.keymap.set('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+vim.keymap.set('n', '<c-p>', "<cmd>lua require('fzf-lua').files()<cr>", { silent = true })
 
