@@ -103,7 +103,7 @@ require("lualine").setup({
 })
 
 
-vim.keymap.set('n', '<c-b>', ':nvimtreefindfiletoggle<cr>', { silent = true })
+vim.keymap.set('n', '<c-b>', ':NvimTreeFindFileToggle<CR>', { silent = true })
 -- vim.keymap.set('n', 'w', '<up>')
 -- vim.keymap.set('n', 's', '<down>')
 -- vim.keymap.set('n', 'a', '<left>')
