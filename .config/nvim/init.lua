@@ -14,7 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 local plugins = {
 	{"ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
 	{"nvim-lualine/lualine.nvim"},
@@ -22,6 +21,7 @@ local plugins = {
 	{"nvim-tree/nvim-tree.lua"},
 	{"neovim/nvim-lspconfig"},
 	{"olical/conjure"},
+	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{"ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" }},
 }
 
@@ -30,6 +30,20 @@ local opts = {}
 require("lazy").setup(plugins, opts)
 
 require("nvim-tree").setup()
+
+require("nvim-treesitter.configs").setup({
+	ensure_installed = {
+		"c",
+		"lua",
+		"vim",
+		"vimdoc",
+		"query",
+		"go",
+		"rust",
+		"clojure",
+		"elixir"
+	},
+})
 
 require("fzf-lua").setup()
 
