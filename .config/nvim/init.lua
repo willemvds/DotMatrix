@@ -41,8 +41,9 @@ require("nvim-treesitter.configs").setup({
 		"go",
 		"rust",
 		"clojure",
-		"elixir"
+		"elixir",
 	},
+	auto_install = true,
 })
 
 require("fzf-lua").setup()
