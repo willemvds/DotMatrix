@@ -43,6 +43,9 @@ require("nvim-treesitter.configs").setup({
 		"clojure",
 		"elixir",
 	},
+	highlight = {
+		enable = true,
+	},
 	auto_install = true,
 })
 
