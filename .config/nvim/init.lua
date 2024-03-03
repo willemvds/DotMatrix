@@ -21,6 +21,7 @@ local plugins = {
 	{"nvim-tree/nvim-tree.lua"},
 	{"neovim/nvim-lspconfig"},
 	{"olical/conjure"},
+	{"ggandor/leap.nvim"},
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{"ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" }},
 }
@@ -28,6 +29,8 @@ local plugins = {
 local opts = {}
 
 require("lazy").setup(plugins, opts)
+
+require("leap").create_default_mappings()
 
 require("nvim-tree").setup()
 
