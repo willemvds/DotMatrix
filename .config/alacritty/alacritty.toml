@@ -1,5 +1,9 @@
+import = [
+	"~/.config/alacritty/themes/themes/base16_default_dark.toml"
+]
+
 [shell]
-program="/opt/homebrew/bin/fish"
+program="/usr/bin/fish"
 
 [font]
 normal = { family = "SauceCodePro Nerd Font", style = "Regular" }
