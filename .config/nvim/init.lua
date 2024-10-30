@@ -32,7 +32,11 @@ require("lazy").setup(plugins, opts)
 
 require("leap").create_default_mappings()
 
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+	view = {
+		adaptive_size = true,
+	}
+})
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
