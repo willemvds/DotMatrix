@@ -1,0 +1,7 @@
+#!/usr/bin/env fish
+set today_path "$HOME/.today"
+mkdir -p $today_path
+set formatted_date $(date '+%Y-%m-%d')
+set file_name "today.$formatted_date.txt"
+nvim "$today_path/$file_name"
+
