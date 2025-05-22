@@ -1,12 +1,15 @@
-import = [
-	"~/.config/alacritty/themes/themes/base16_default_dark.toml"
-]
-
-[shell]
+[terminal.shell]
 program="/usr/bin/fish"
+
+[window]
+decorations="None"
 
 [font]
 normal = { family = "SauceCodePro Nerd Font", style = "Regular" }
 size = 14
 
+[general]
+import = [
+	"~/.config/alacritty/themes/themes/base16_default_dark.toml"
+]
 
