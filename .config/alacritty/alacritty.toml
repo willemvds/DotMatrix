@@ -6,7 +6,7 @@ decorations="None"
 
 [font]
 normal = { family = "SauceCodePro Nerd Font", style = "Regular" }
-size = 14
+size = 15
 
 [general]
 import = [
