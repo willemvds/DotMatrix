@@ -81,17 +81,7 @@ require("nvim-treesitter.configs").setup({
 require("fzf-lua").setup()
 vim.keymap.set("n", "<c-p>", "<cmd>lua require('fzf-lua').files()<cr>", { silent = true })
 
-require("lualine").setup({
-	sections = {
-		lualine_x = {
-			{
-				require("lazy.status").updates,
-				cond = require("lazy.status").has_updates,
-				color = { fg = "#ff9e64" },
-			},
-		},
-	},
-})
+require("lualine").setup({})
 
 vim.lsp.config("rust_analyzer", {
 	settings = {
@@ -130,4 +120,3 @@ vim.keymap.set("v", "<C-v>", '"+p')
 -- vim.keymap.set('n', 's', '<down>')
 -- vim.keymap.set('n', 'a', '<left>')
 -- vim.keymap.set('n', 'd', '<right>')
-
