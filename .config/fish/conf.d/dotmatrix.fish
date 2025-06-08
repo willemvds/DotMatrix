@@ -1,0 +1,2 @@
+alias lsda="lsd -lahG"
+
