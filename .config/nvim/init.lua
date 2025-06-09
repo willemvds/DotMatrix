@@ -3,6 +3,7 @@ vim.opt.showcmd = true
 vim.o.background = "dark"
 vim.o.winborder = "rounded"
 vim.wo.number = true
+vim.g.mapleader = ","
 
 vim.diagnostic.config({
 	-- Use the default configuration
@@ -115,6 +116,8 @@ vim.keymap.set("n", "<C-j>", ":bprev<CR>")
 vim.keymap.set("n", "<C-k>", ":bnext<CR>")
 vim.keymap.set("v", "<C-c>", '"+y')
 vim.keymap.set("v", "<C-v>", '"+p')
+vim.keymap.set("n", "<leader>w", ":w<CR>")
+vim.keymap.set("n", "<leader>q", ":q<CR>")
 
 -- vim.keymap.set('n', 'w', '<up>')
 -- vim.keymap.set('n', 's', '<down>')
