@@ -65,6 +65,7 @@ require("nvim-treesitter.configs").setup({
 		"c",
 		"clojure",
 		"go",
+		"html",
 		"lua",
 		"markdown",
 		"markdown_inline",
