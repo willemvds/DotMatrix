@@ -3,6 +3,7 @@ program="/usr/bin/fish"
 
 [window]
 decorations="None"
+startup_mode="Maximized"
 
 [font]
 normal = { family = "SauceCodePro Nerd Font", style = "Regular" }
