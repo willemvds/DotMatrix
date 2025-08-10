@@ -35,15 +35,16 @@ local plugins = {
 	{ "nvim-tree/nvim-web-devicons" },
 	{ "nvim-tree/nvim-tree.lua" },
 	{ "neovim/nvim-lspconfig" },
-	--{"olical/conjure"},
-	{ "ggandor/leap.nvim" },
+	-- {"olical/conjure"},
+	-- { "ggandor/leap.nvim" },
 	{ "nvim-treesitter/nvim-treesitter", lazy = false, branch = "master", build = ":TSUpdate" },
+	-- { "nvim-treesitter/nvim-treesitter-context" },
 	{ "ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
 }
 local opts = {}
 require("lazy").setup(plugins, opts)
 
---habamax
+-- habamax
 vim.cmd([[colorscheme gruvbox]])
 
 require("nvim-web-devicons").setup({
@@ -51,7 +52,7 @@ require("nvim-web-devicons").setup({
 	default = true,
 })
 
-require("leap").create_default_mappings()
+-- require("leap").create_default_mappings()
 
 require("nvim-tree").setup({
 	view = {
@@ -99,6 +100,47 @@ vim.lsp.config("gopls", {
 	},
 })
 
+vim.g.no_ruby_maps = true
+
+vim.lsp.config("ruby_lsp", {
+	cmd = { "ruby-lsp" },
+	filetypes = { "ruby", "rb", "eruby" },
+	root_markers = { "Gemfile", ".gemspec", ".git" },
+	settings = {
+		initializationOptions = {
+			enabledFeatures = {
+				codeActions = true,
+				codeLens = true,
+				completion = true,
+				definition = true,
+				diagnostics = true,
+				documentHighlights = true,
+				documentLink = true,
+				documentSymbols = true,
+				foldingRanges = true,
+				formatting = true,
+				hover = true,
+				inlayHint = true,
+				onTypeFormatting = true,
+				selectionRanges = true,
+				semanticHighlighting = true,
+				signatureHelp = true,
+				typeHierarchy = true,
+				workspaceSymbol = true,
+			},
+			formatter = "auto",
+			linters = {},
+			experimentalFeaturesEnabled = false,
+		},
+	},
+})
+
+vim.lsp.config("solargraph", {
+	cmd = { "solargraph", "stdio" },
+	filetypes = { "ruby", "rb", "eruby" },
+	root_markers = { "Gemfile", ".gemspec", ".git" },
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -112,6 +154,14 @@ vim.lsp.enable({
 	"gopls",
 	"rust_analyzer",
 })
+
+if vim.fn.filereadable(".solargraph.lsp") > 0 then
+	vim.lsp.enable({
+		"solargraph",
+	})
+else
+	vim.lsp.enable({ "ruby_lsp" })
+end
 
 vim.keymap.set("n", "<C-j>", ":bprev<CR>")
 vim.keymap.set("n", "<C-k>", ":bnext<CR>")
