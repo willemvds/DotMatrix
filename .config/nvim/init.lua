@@ -7,13 +7,13 @@ vim.g.mapleader = ","
 
 vim.diagnostic.config({
 	-- Use the default configuration
-	-- virtual_lines = true,
+	virtual_lines = false,
 
 	-- Alternatively, customize specific options
-	virtual_lines = {
+	-- virtual_lines = {
 		-- Only show virtual line diagnostics for the current cursor line
-		current_line = true,
-	},
+		-- current_line = false,
+	--},
 })
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -71,7 +71,9 @@ require("nvim-treesitter.configs").setup({
 		"markdown",
 		"markdown_inline",
 		"query",
+		"ruby",
 		"rust",
+		"sql",
 		"vim",
 		"vimdoc",
 	},
@@ -169,6 +171,7 @@ vim.keymap.set("v", "<C-c>", '"+y')
 vim.keymap.set("v", "<C-v>", '"+p')
 vim.keymap.set("n", "<leader>w", ":w<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
+vim.keymap.set("n", "<leader>h", ":noh<CR>")
 
 -- vim.keymap.set('n', 'w', '<up>')
 -- vim.keymap.set('n', 's', '<down>')
