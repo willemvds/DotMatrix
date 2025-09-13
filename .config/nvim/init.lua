@@ -11,8 +11,8 @@ vim.diagnostic.config({
 
 	-- Alternatively, customize specific options
 	-- virtual_lines = {
-		-- Only show virtual line diagnostics for the current cursor line
-		-- current_line = false,
+	-- Only show virtual line diagnostics for the current cursor line
+	-- current_line = false,
 	--},
 })
 
@@ -29,8 +29,19 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local gb_options = {
+	overrides = {
+		Keyword = { fg = "#8ec07c" },
+		Statement = { fg = "#8ec07c" },
+		Conditional = { fg = "#8ec07c" },
+		Repeat = { fg = "#8ec07c" },
+		Label = { fg = "#8ec07c" },
+		["@lsp.type.method"] = { bg = "#8ec07c" },
+	},
+}
+
 local plugins = {
-	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
+	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = gb_options },
 	{ "nvim-lualine/lualine.nvim" },
 	{ "nvim-tree/nvim-web-devicons" },
 	{ "nvim-tree/nvim-tree.lua" },
