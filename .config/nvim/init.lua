@@ -163,7 +163,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-# https://github.com/kristoff-it/superhtml
+-- https://github.com/kristoff-it/superhtml
 vim.api.nvim_create_autocmd("Filetype", {
 	pattern = { "html", "shtml", "htm" },
 	callback = function()
