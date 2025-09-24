@@ -52,6 +52,7 @@ local plugins = {
 	{ "nvim-treesitter/nvim-treesitter", lazy = false, branch = "master", build = ":TSUpdate" },
 	-- { "nvim-treesitter/nvim-treesitter-context" },
 	{ "ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
+	{ "mcauley-penney/visual-whitespace.nvim", config = true, opts = {} },
 }
 local opts = {}
 require("lazy").setup(plugins, opts)
