@@ -1,5 +1,6 @@
 vim.opt.cursorline = true
 vim.opt.showcmd = true
+vim.opt.tabstop = 4
 vim.o.background = "dark"
 vim.o.winborder = "rounded"
 vim.wo.number = true
