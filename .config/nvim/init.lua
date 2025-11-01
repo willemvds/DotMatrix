@@ -115,8 +115,15 @@ vim.lsp.config("gopls", {
 	},
 })
 
-vim.g.no_ruby_maps = true
+vim.lsp.config("zls", {
+    settings = {
+        zls = {
+		    semantic_tokens = "partial",
+		},
+	},
+})
 
+vim.g.no_ruby_maps = true
 vim.lsp.config("ruby_lsp", {
 	cmd = { "ruby-lsp" },
 	filetypes = { "ruby", "rb", "eruby" },
@@ -180,6 +187,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 vim.lsp.enable({
 	"gopls",
 	"rust_analyzer",
+	"zls",
 })
 
 if vim.fn.filereadable(".solargraph.lsp") > 0 then
