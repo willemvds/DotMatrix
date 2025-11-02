@@ -37,7 +37,7 @@ local gb_options = {
 		Conditional = { fg = "#8ec07c" },
 		Repeat = { fg = "#8ec07c" },
 		Label = { fg = "#8ec07c" },
-		["@lsp.type.method"] = { bg = "#8ec07c" },
+		-- ["@lsp.type.method"] = { bg = "#8ec07c" },
 	},
 }
 
