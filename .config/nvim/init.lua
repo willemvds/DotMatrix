@@ -101,6 +101,13 @@ vim.keymap.set("n", "<c-p>", "<cmd>lua require('fzf-lua').files()<cr>", { silent
 
 require("lualine").setup({})
 
+vim.lsp.config("clojure-lsp", {
+	cmd = { "clojure-lsp" },
+	filetypes = { "clojure", "clojurescript", "edn" },
+	root_markers = { "deps.edn", ".git" },
+	settings = {},
+})
+
 vim.lsp.config("rust_analyzer", {
 	settings = {
 		["rust-analyzer"] = {},
@@ -116,9 +123,9 @@ vim.lsp.config("gopls", {
 })
 
 vim.lsp.config("zls", {
-    settings = {
-        zls = {
-		    semantic_tokens = "partial",
+	settings = {
+		zls = {
+			semantic_tokens = "partial",
 		},
 	},
 })
@@ -185,6 +192,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 })
 
 vim.lsp.enable({
+	"clojure-lsp",
 	"gopls",
 	"rust_analyzer",
 	"zls",
