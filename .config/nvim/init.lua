@@ -83,6 +83,7 @@ require("nvim-treesitter.configs").setup({
 		"lua",
 		"markdown",
 		"markdown_inline",
+		"python",
 		"query",
 		"ruby",
 		"rust",
@@ -119,6 +120,12 @@ vim.lsp.config("gopls", {
 		gopls = {
 			vulncheck = "Imports",
 		},
+	},
+})
+
+vim.lsp.config("pylsp", {
+    cmd = { ".venv/bin/pylsp"},
+    settings = {
 	},
 })
 
@@ -195,6 +202,7 @@ vim.lsp.enable({
 	"clojure-lsp",
 	"gopls",
 	"rust_analyzer",
+	"pylsp",
 	"zls",
 })
 
