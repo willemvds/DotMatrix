@@ -5,6 +5,7 @@ vim.o.background = "dark"
 vim.o.winborder = "rounded"
 vim.wo.number = true
 vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
 vim.diagnostic.config({
 	-- Use the default configuration
@@ -47,12 +48,15 @@ local plugins = {
 	{ "nvim-tree/nvim-web-devicons" },
 	{ "nvim-tree/nvim-tree.lua" },
 	{ "neovim/nvim-lspconfig" },
-	-- {"olical/conjure"},
 	-- { "ggandor/leap.nvim" },
 	{ "nvim-treesitter/nvim-treesitter", lazy = false, branch = "master", build = ":TSUpdate" },
 	-- { "nvim-treesitter/nvim-treesitter-context" },
 	{ "ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
 	{ "mcauley-penney/visual-whitespace.nvim", config = true, opts = {} },
+	{ "tpope/vim-dispatch" },
+	{ "radenling/vim-dispatch-neovim" },
+	{ "clojure-vim/vim-jack-in" },
+	{ "Olical/conjure" },
 }
 local opts = {}
 require("lazy").setup(plugins, opts)
@@ -124,9 +128,8 @@ vim.lsp.config("gopls", {
 })
 
 vim.lsp.config("pylsp", {
-    cmd = { ".venv/bin/pylsp"},
-    settings = {
-	},
+	cmd = { ".venv/bin/pylsp" },
+	settings = {},
 })
 
 vim.lsp.config("zls", {
