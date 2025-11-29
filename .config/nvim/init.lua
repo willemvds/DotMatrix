@@ -6,6 +6,10 @@ vim.o.winborder = "rounded"
 vim.wo.number = true
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
+vim.opt.wrap = false
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.undofile = true
 
 vim.diagnostic.config({
 	-- Use the default configuration
@@ -57,6 +61,20 @@ local plugins = {
 	{ "radenling/vim-dispatch-neovim" },
 	{ "clojure-vim/vim-jack-in" },
 	{ "Olical/conjure" },
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = {},
+		config = function(_, opts)
+			-- Get signatures (and _only_ signatures) when in argument lists.
+			require("lsp_signature").setup({
+				doc_lines = 0,
+				handler_opts = {
+					border = "none",
+				},
+			})
+		end,
+	},
 }
 local opts = {}
 require("lazy").setup(plugins, opts)
@@ -115,7 +133,27 @@ vim.lsp.config("clojure-lsp", {
 
 vim.lsp.config("rust_analyzer", {
 	settings = {
-		["rust-analyzer"] = {},
+		["rust-analyzer"] = {
+			cargo = {
+				features = "all",
+			},
+			checkOnSave = {
+				enable = true,
+			},
+			check = {
+				command = "clippy",
+			},
+			imports = {
+				group = {
+					enable = false,
+				},
+			},
+			completion = {
+				postfix = {
+					enable = false,
+				},
+			},
+		},
 	},
 })
 
@@ -186,6 +224,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if client:supports_method("textDocument/completion") then
 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
 		end
+
+		if client.server_capabilities.documentFormattingProvider then
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = vim.api.nvim_create_augroup("RustFormat", { clear = true }),
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({ bufnr = bufnr })
+				end,
+			})
+		end
+
+		local opts = { buffer = ev.buf }
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 	end,
 })
 
@@ -225,6 +279,11 @@ vim.keymap.set("n", "<leader>w", ":w<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>h", ":noh<CR>")
 
+vim.keymap.set("n", "<leader><leader>", "<c-^>")
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>r", vim.diagnostic.setloclist)
 -- vim.keymap.set('n', 'w', '<up>')
 -- vim.keymap.set('n', 's', '<down>')
 -- vim.keymap.set('n', 'a', '<left>')
