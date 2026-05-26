@@ -47,13 +47,23 @@ local gb_options = {
 }
 
 local plugins = {
-	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = gb_options },
+	{
+		"ellisonleao/gruvbox.nvim",
+		priority = 1000,
+		config = true,
+		opts = gb_options,
+	},
 	{ "nvim-lualine/lualine.nvim" },
 	{ "nvim-tree/nvim-web-devicons" },
 	{ "nvim-tree/nvim-tree.lua" },
 	{ "neovim/nvim-lspconfig" },
 	-- { "ggandor/leap.nvim" },
-	{ "nvim-treesitter/nvim-treesitter", lazy = false, branch = "master", build = ":TSUpdate" },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		branch = "master",
+		build = ":TSUpdate",
+	},
 	-- { "nvim-treesitter/nvim-treesitter-context" },
 	{ "ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
 	{ "mcauley-penney/visual-whitespace.nvim", config = true, opts = {} },
@@ -123,6 +133,23 @@ vim.keymap.set("n", "<c-p>", "<cmd>lua require('fzf-lua').files()<cr>", { silent
 
 require("lualine").setup({})
 
+vim.lsp.config("lua_ls", {
+	cmd = { "lua-language-server" },
+	settings = {
+		Lua = {
+			runtime = { version = "LuaJIT" },
+			diagnostics = {
+				globals = { "vim" }, -- Recognize 'vim' global
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+			telemetry = { enable = false },
+		},
+	},
+})
+
 vim.lsp.config("clojure-lsp", {
 	cmd = { "clojure-lsp" },
 	filetypes = { "clojure", "clojurescript", "edn" },
@@ -164,8 +191,8 @@ vim.lsp.config("gopls", {
 	},
 })
 
-vim.lsp.config("pylsp", {
-	cmd = { ".venv/bin/pylsp" },
+vim.lsp.config("ty", {
+	cmd = { "uv", "run", "ty", "server" },
 	settings = {},
 })
 
@@ -217,8 +244,9 @@ vim.api.nvim_create_autocmd("Filetype", {
 vim.lsp.enable({
 	"clojure-lsp",
 	"gopls",
+	"lua_ls",
 	"rust_analyzer",
-	"pylsp",
+	"ty",
 	"zls",
 })
 
