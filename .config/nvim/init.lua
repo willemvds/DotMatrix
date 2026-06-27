@@ -252,6 +252,7 @@ vim.lsp.enable({
 
 vim.keymap.set("n", "<C-j>", ":bprev<CR>")
 vim.keymap.set("n", "<C-k>", ":bnext<CR>")
+vim.keymap.set("n", "<C-q>", "<cmd>bprevious <bar> bdelete #<CR>")
 vim.keymap.set("v", "<C-c>", '"+y')
 vim.keymap.set("v", "<C-v>", '"+p')
 vim.keymap.set("n", "<leader>w", ":w<CR>")
@@ -260,8 +261,8 @@ vim.keymap.set("n", "<leader>h", ":noh<CR>")
 
 vim.keymap.set("n", "<leader><leader>", "<c-^>")
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+-- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+-- vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>r", vim.diagnostic.setloclist)
 -- vim.keymap.set('n', 'w', '<up>')
 -- vim.keymap.set('n', 's', '<down>')
