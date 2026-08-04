@@ -1,0 +1,6 @@
+# /etc/NetworkManager/NetworkManager.conf
+[main]
+dns=systemd-resolved
+
+
+ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
