@@ -205,6 +205,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+
+		vim.api.nvim_set_hl(0, "@lsp.type.string.python", {})
 	end,
 })
 
@@ -251,6 +253,6 @@ vim.keymap.set("n", "<leader>r", vim.diagnostic.setloclist)
 vim.api.nvim_create_autocmd("ColorScheme", {
 	desc = "Clear specific LSP semantic token highlights",
 	callback = function()
-		vim.api.nvim_set_hl(0, "@lsp.type.python.string", {})
+		vim.api.nvim_set_hl(0, "@lsp.type.string.python", {})
 	end,
 })
