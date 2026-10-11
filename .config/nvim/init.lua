@@ -48,6 +48,13 @@ local gb_options = {
 
 local plugins = {
 	{
+		"romus204/tree-sitter-manager.nvim",
+		dependencies = {}, -- tree-sitter CLI must be installed system-wide
+		config = function()
+			require("tree-sitter-manager").setup()
+		end,
+	},
+	{
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
 		config = true,
@@ -58,12 +65,6 @@ local plugins = {
 	{ "nvim-tree/nvim-tree.lua" },
 	{ "neovim/nvim-lspconfig" },
 	-- { "ggandor/leap.nvim" },
-	{
-		"nvim-treesitter/nvim-treesitter",
-		lazy = false,
-		branch = "master",
-		build = ":TSUpdate",
-	},
 	-- { "nvim-treesitter/nvim-treesitter-context" },
 	{ "ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
 	{ "mcauley-penney/visual-whitespace.nvim", config = true, opts = {} },
@@ -104,29 +105,7 @@ require("nvim-tree").setup({
 		adaptive_size = true,
 	},
 })
-vim.keymap.set("n", "<c-b>", ":NvimTreeFindFileToggle<CR>", { silent = true })
-
-require("nvim-treesitter.configs").setup({
-	ensure_installed = {
-		"c",
-		"clojure",
-		"go",
-		"html",
-		"lua",
-		"markdown",
-		"markdown_inline",
-		"python",
-		"query",
-		"rust",
-		"sql",
-		"vim",
-		"vimdoc",
-	},
-	highlight = {
-		enable = true,
-	},
-	auto_install = true,
-})
+vim.keymap.set("n", "<leader>b", ":NvimTreeFindFileToggle<CR>", { silent = true })
 
 require("fzf-lua").setup()
 vim.keymap.set("n", "<c-p>", "<cmd>lua require('fzf-lua').files()<cr>", { silent = true })
@@ -268,3 +247,10 @@ vim.keymap.set("n", "<leader>r", vim.diagnostic.setloclist)
 -- vim.keymap.set('n', 's', '<down>')
 -- vim.keymap.set('n', 'a', '<left>')
 -- vim.keymap.set('n', 'd', '<right>')
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	desc = "Clear specific LSP semantic token highlights",
+	callback = function()
+		vim.api.nvim_set_hl(0, "@lsp.type.python.string", {})
+	end,
+})
